@@ -1,1 +1,26 @@
+.table {
+  width: 80%;
+  margin: 60px auto;
+  box-shadow: 0px 0px 16px rgb(180, 182, 184);
+}
 
+.student {
+  width: 100%;
+  background-color: rgb(180, 182, 184);
+}
+
+.thead {
+  background-color: rgb(180, 182, 184);
+}
+
+.tdata {
+  padding: 25px;
+}
+
+.theader {
+  padding: 15px;
+}
+
+.table-data {
+  border-collapse: collapse;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 class Table extends React.Component {
   constructor(props) {
@@ -67,18 +68,18 @@ class Table extends React.Component {
   render() {
     return (
       <div className="table">
-        <table border={2} width={"100%S"}>
-          <thead>
+        <table className="table-data" width={"100%"}>
+          <thead className="thead">
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Adress</th>
-              <th>Status</th>
-              <th>Nickname</th>
-              <th>Univ</th>
-              <th>Job</th>
-              <th>Edit</th>
+              <th className="theader">ID</th>
+              <th className="theader">Name</th>
+              <th className="theader">Age</th>
+              <th className="theader">Adress</th>
+              <th className="theader">Status</th>
+              <th className="theader">Nickname</th>
+              <th className="theader">Univ</th>
+              <th className="theader">Job</th>
+              <th className="theader">Edit</th>
             </tr>
           </thead>
 
@@ -86,15 +87,15 @@ class Table extends React.Component {
             {this.state.student.map((std) => {
               return (
                 <tr key={std}>
-                  <td> {std.id} </td>
-                  <td> {std.name} </td>
-                  <td> {std.age} </td>
-                  <td> {std.adress} </td>
-                  <td> {std.status} </td>
-                  <td> {std.nickname} </td>
-                  <td> {std.univ} </td>
-                  <td> {std.job} </td>
-                  <td> {std.edit} </td>
+                  <td className="tdata"> {std.id} </td>
+                  <td className="tdata"> {std.name} </td>
+                  <td className="tdata"> {std.age} </td>
+                  <td className="tdata"> {std.adress} </td>
+                  <td className="tdata"> {std.status} </td>
+                  <td className="tdata"> {std.nickname} </td>
+                  <td className="tdata"> {std.univ} </td>
+                  <td className="tdata"> {std.job} </td>
+                  <td className="tdata"> {std.edit} </td>
                 </tr>
               );
             })}
