@@ -36,7 +36,7 @@
 }
 
 .thead {
-  background-color: red;
+  background-color: rgb(180, 182, 184);
   position: sticky;
   top: 0;
   z-index: 999;
