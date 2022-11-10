@@ -1,20 +1,67 @@
 .table {
   width: 80%;
+  height: 300px;
+  border-radius: 10px;
   margin: 60px auto;
   box-shadow: 0px 0px 16px rgb(180, 182, 184);
+  overflow: scroll;
+}
+.search-box {
+  width: 100%;
+  /* border: 1px solid rgb(180, 182, 184); */
+  background: rgb(180, 182, 184);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
-.student {
-  width: 100%;
+.header {
+  text-align: center;
+  font-size: 18px;
+}
+
+.input-search {
+  width: 90%;
+  display: flex;
+  gap: 10px;
   background-color: rgb(180, 182, 184);
+  margin: 0px auto;
+}
+
+.input-btns {
+  flex: 1;
+  border-radius: 3px;
+  border: none;
+  outline: none;
 }
 
 .thead {
   background-color: rgb(180, 182, 184);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.theader1 {
+  padding: 15px;
+  background-color: rgb(180, 182, 184);
+  position: sticky;
+  left: 0;
+  /* z-index: 777; */
+}
+
+.tdata1 {
+  padding: 15px;
+  background-color: #ffff;
+  position: sticky;
+  left: 0;
+  /* z-index: 666; */
 }
 
 .tdata {
-  padding: 25px;
+  background-color: #ffff;
+  padding: 15px;
+  /* z-index: 0; */
 }
 
 .theader {
@@ -23,4 +70,20 @@
 
 .table-data {
   border-collapse: collapse;
+  width: 100%;
+}
+
+.tdata-btn {
+  width: 50px;
+  height: 20px;
+  background-color: #ffff;
+  border-radius: 5px;
+  border: 1px solid rgb(48, 48, 131);
+}
+.tdata-btn:hover {
+  background-color: rgb(110, 110, 189);
+}
+
+.tdata-btn:active {
+  transform: scale(0.97);
 }

@@ -1,77 +1,56 @@
 import React from "react";
 import "./index.css";
+import { students } from "./data";
 
 class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      student: [
-        {
-          id: 1,
-          name: "Abror",
-          age: "24",
-          adress: "Daegu,Korea",
-          status: "student",
-          nickname: "vito",
-          univ: "Yeungnam",
-          job: "developer",
-          edit: "edit",
-        },
-        {
-          id: 2,
-          name: "Sherzod",
-          age: "26",
-          adress: "Seul,Korea",
-          status: "student",
-          nickname: "sherik",
-          univ: "sejong",
-          job: "junior developer",
-          edit: "edit",
-        },
-        {
-          id: 3,
-          name: "Rahim",
-          age: "24",
-          adress: "Seul,Korea",
-          status: "student",
-          nickname: "hoorwen",
-          univ: "yeungnam",
-          job: "developer",
-          edit: "edit",
-        },
-        {
-          id: 4,
-          name: "Sher",
-          age: "29",
-          adress: "Busan,Korea",
-          status: "student",
-          nickname: "shawn",
-          univ: "Busan national",
-          job: "middle developer",
-          edit: "edit",
-        },
-        {
-          id: 5,
-          name: "Fazik",
-          age: "28",
-          adress: "Daegu,Korea",
-          status: "worker",
-          nickname: "dean",
-          univ: "KNU",
-          job: "senior developer",
-          edit: "edit",
-        },
-      ],
-    };
-  }
+  state = {
+    student: students,
+  };
 
   render() {
+    const onDelete = (id) => {
+      console.log(id);
+      let res = this.state.student.filter((val) => val.id !== id);
+
+      this.setState({ student: res });
+    };
+
+    const filter = ({ target: { value, name } }) => {
+      let res = students.filter((val) =>
+        `${val[name]}`.toLowerCase().includes(value.toLowerCase())
+      );
+      this.setState({ student: res });
+    };
     return (
       <div className="table">
-        <table className="table-data" width={"100%"}>
+        <table className="table-data">
           <thead className="thead">
             <tr>
-              <th className="theader">ID</th>
+              <th colSpan={9}>
+                <div className="search-box">
+                  <h1 className="header">Student datalist</h1>
+                  <div className="input-search">
+                    <input
+                      className="input-btns"
+                      name="id"
+                      onChange={filter}
+                      placeholder="Id"
+                      type="text"
+                    />
+                    <input
+                      className="input-btns"
+                      name="name"
+                      onChange={filter}
+                      placeholder="Name"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </th>
+            </tr>
+
+            <tr>
+              <th className="theader1">ID</th>
               <th className="theader">Name</th>
               <th className="theader">Age</th>
               <th className="theader">Adress</th>
@@ -86,8 +65,8 @@ class Table extends React.Component {
           <tbody>
             {this.state.student.map((std) => {
               return (
-                <tr key={std}>
-                  <td className="tdata"> {std.id} </td>
+                <tr key={std.id}>
+                  <td className="tdata1"> {std.id} </td>
                   <td className="tdata"> {std.name} </td>
                   <td className="tdata"> {std.age} </td>
                   <td className="tdata"> {std.adress} </td>
@@ -95,7 +74,14 @@ class Table extends React.Component {
                   <td className="tdata"> {std.nickname} </td>
                   <td className="tdata"> {std.univ} </td>
                   <td className="tdata"> {std.job} </td>
-                  <td className="tdata"> {std.edit} </td>
+                  <td className="tdata">
+                    <button
+                      className="tdata-btn"
+                      onClick={() => onDelete(std.id)}
+                    >
+                      delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
