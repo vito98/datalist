@@ -5,6 +5,7 @@ import { students } from "./data";
 class Table extends React.Component {
   state = {
     student: students,
+    selected: null,
   };
 
   render() {
@@ -13,6 +14,31 @@ class Table extends React.Component {
       let res = this.state.student.filter((val) => val.id !== id);
 
       this.setState({ student: res });
+    };
+
+    const onEdit = (value) => {
+      console.log(value);
+      this.setState({ selected: value });
+    };
+
+    const onCancel = (value) => {
+      console.log(value);
+      this.setState({ selected: value });
+    };
+
+    const onSave = () => {
+      let res = this.state.student.map((val) =>
+        this.state.selected?.id === val.id ? this.state.selected : val
+      );
+
+      this.setState({ student: res, selected: null });
+    };
+
+    const onChangeName = ({ target: { value, name } }) => {
+      console.log(value);
+      this.setState((state) => {
+        return { selected: { ...state.selected, [name]: value } };
+      });
     };
 
     const filter = ({ target: { value, name } }) => {
@@ -64,24 +90,127 @@ class Table extends React.Component {
 
           <tbody>
             {this.state.student.map((std) => {
+              let check = this.state.selected?.id === std.id;
               return (
                 <tr key={std.id}>
                   <td className="tdata1"> {std.id} </td>
-                  <td className="tdata"> {std.name} </td>
-                  <td className="tdata"> {std.age} </td>
-                  <td className="tdata"> {std.adress} </td>
-                  <td className="tdata"> {std.status} </td>
-                  <td className="tdata"> {std.nickname} </td>
-                  <td className="tdata"> {std.univ} </td>
-                  <td className="tdata"> {std.job} </td>
                   <td className="tdata">
-                    <button
-                      className="tdata-btn"
-                      onClick={() => onDelete(std.id)}
-                    >
-                      delete
-                    </button>
+                    {" "}
+                    {check ? (
+                      <input
+                        name="name"
+                        onChange={onChangeName}
+                        value={this.state.selected.name}
+                      />
+                    ) : (
+                      std.name
+                    )}{" "}
                   </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="age"
+                        onChange={onChangeName}
+                        value={this.state.selected.age}
+                      />
+                    ) : (
+                      std.age
+                    )}{" "}
+                  </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="adress"
+                        onChange={onChangeName}
+                        value={this.state.selected.adress}
+                      />
+                    ) : (
+                      std.adress
+                    )}{" "}
+                  </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="status"
+                        onChange={onChangeName}
+                        value={this.state.selected.status}
+                      />
+                    ) : (
+                      std.status
+                    )}{" "}
+                  </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="nickname"
+                        onChange={onChangeName}
+                        value={this.state.selected.nickname}
+                      />
+                    ) : (
+                      std.nickname
+                    )}{" "}
+                  </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="univ"
+                        onChange={onChangeName}
+                        value={this.state.selected.univ}
+                      />
+                    ) : (
+                      std.univ
+                    )}{" "}
+                  </td>
+                  <td className="tdata">
+                    {" "}
+                    {check ? (
+                      <input
+                        name="job"
+                        onChange={onChangeName}
+                        value={this.state.selected.job}
+                      />
+                    ) : (
+                      std.job
+                    )}{" "}
+                  </td>
+                  <th className="tdata">
+                    {check ? (
+                      <>
+                        <button
+                          className="tdata-btn"
+                          onClick={() => onCancel(std.id)}
+                        >
+                          cancel
+                        </button>
+                        <button
+                          className="tdata-btn"
+                          onClick={() => onSave(std)}
+                        >
+                          save
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="tdata-btn"
+                          onClick={() => onDelete(std.id)}
+                        >
+                          delete
+                        </button>
+                        <button
+                          className="tdata-btn"
+                          onClick={() => onEdit(std)}
+                        >
+                          edit
+                        </button>
+                      </>
+                    )}
+                  </th>
                 </tr>
               );
             })}
